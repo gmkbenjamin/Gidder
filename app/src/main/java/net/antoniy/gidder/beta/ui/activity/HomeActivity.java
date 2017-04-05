@@ -5,6 +5,7 @@ import net.antoniy.gidder.beta.app.SimpleEula;
 import net.antoniy.gidder.beta.ui.util.C;
 import net.antoniy.gidder.beta.ui.util.GidderCommons;
 import net.antoniy.gidder.beta.ui.util.PrefsConstants;
+import net.antoniy.gidder.beta.service.SSHDaemonService;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -247,8 +248,8 @@ public class HomeActivity extends BaseActivity {
 
 		if(id == R.id.homeBtnStartStop) {
 			boolean isSshServiceRunning = GidderCommons.isSshServiceRunning(HomeActivity.this);
-			
-			Intent intent = new Intent(C.action.START_SSH_SERVER);
+
+			Intent intent = new Intent(v.getContext(), SSHDaemonService.class);
 			if(!isSshServiceRunning) {
 				if (!GidderCommons.isWifiReady(HomeActivity.this)) {
 				    return;
